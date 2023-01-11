@@ -1,0 +1,14 @@
+# @package _group_
+
+mrqa_train:
+  file:
+  _target_: dpr.data.biencoder_data.JsonQADataset
+
+nq_train:
+  _target_: dpr.data.biencoder_data.JsonQADataset
+  file:
+
+nq_dev:
+  _target_: dpr.data.biencoder_data.JsonQADataset
+  file:
+

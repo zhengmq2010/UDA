@@ -1,0 +1,53 @@
+defaults:
+  - encoder: hf_bert
+  - ctx_sources: default_sources
+
+# A trained bi-encoder checkpoint file to initialize the model
+model_file: /public15_data/zmq/DPR/outputs/2022-12-11/12-24-49/output/bpr_nq_mrqa_attention_Pretrained-large_MIX_nq_train.87
+
+# Name of the all-passages resource
+ctx_src: dpr_wiki_split  # dpr original wikipedia split
+
+# which (ctx or query) encoder to be used for embedding generation
+encoder_type: ctx
+
+# output .tsv file path to write results to
+out_file: /public15_data/zmq/odqa_data/open_domain_data/data/retriever_results/ABLATION_dpr_nq_initial_retriever_bpr/wikipedia_passages_nq_0.pkl # (21m, 768).pkl的文件名
+#out_file: /zhengmq2010/DPR/wikipedia_passages_nq_0.pkl
+
+# Whether to lower case the input text. Set True for uncased models, False for the cased ones.
+do_lower_case: True
+
+# Number(0-based) of data shard to process
+shard_id: 0
+
+# Total amount of data shards
+num_shards: 1
+
+# Batch size for the passage encoder forward pass (works in DataParallel mode)
+batch_size: 3072  # 128 for 16G, 3072 for 80G(~4h), 1024 for 32G (~8h)
+
+tables_as_passages: False
+
+# tokens which won't be slit by tokenizer
+special_tokens:
+
+tables_chunk_sz: 100
+
+# TODO
+tables_split_type: type1
+
+
+# TODO: move to a conf group
+# local_rank for distributed training on gpus
+local_rank: -1
+device:
+distributed_world_size:
+distributed_port:
+no_cuda: False
+n_gpu:
+fp16: False
+
+# For fp16: Apex AMP optimization level selected in ['O0', 'O1', 'O2', and 'O3']."
+#        "See details at https://nvidia.github.io/apex/amp.html
+fp16_opt_level: O1

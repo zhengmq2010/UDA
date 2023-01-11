@@ -1,0 +1,19 @@
+# @package _group_
+
+mrqa:
+  _target_: dpr.data.retriever_data.CsvQASrc
+  file:
+
+nq_test:
+  _target_: dpr.data.retriever_data.CsvQASrc
+  file:
+
+nq_train:
+  _target_: dpr.data.retriever_data.CsvQASrc
+  file:
+
+nq_dev:
+  _target_: dpr.data.retriever_data.CsvQASrc
+  file:
+
+
